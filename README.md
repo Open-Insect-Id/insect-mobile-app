@@ -1,4 +1,4 @@
-# OpeninsectidMobileapp app
+# Open Insect ID Mobile App
 
 ## Run the app
 
