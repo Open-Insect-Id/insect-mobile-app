@@ -164,4 +164,7 @@ storage/
 
 
 # Vscodium
-.vscode
+.vscode/
+
+# Stub Files
+typings/
