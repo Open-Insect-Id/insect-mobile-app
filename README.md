@@ -1,5 +1,19 @@
 # Open Insect ID Mobile App
 
+## Installation
+* Linux
+```bash
+python -m venv venv
+```
+
+* Windows
+```bash
+python.exe -m venv .venv
+```
+
+
+---
+
 ## Run the app
 
 ### uv
