@@ -17,15 +17,19 @@ def main(page: ft.Page):
             image = ft.Image(src_base64=e.files[0].data, width=300, height=300)
             page.add(image)
 
-    picker.on_result = on_picker_result
-
-    take_photo_button = ft.ElevatedButton(
-        "Prendre une photo",
-        on_click=lambda e: picker.pick_files(
+    def browsePhoto(e):
+        picker.pick_files(
             allow_multiple=False,
             file_type=ft.FilePickerFileType.IMAGE,
             with_data=True
         )
+
+
+    picker.on_result = on_picker_result
+
+    take_photo_button = ft.ElevatedButton(
+        "Browse photo",
+        on_click=browsePhoto
     )
 
     page.floating_action_button = ft.FloatingActionButton(
