@@ -1,5 +1,3 @@
-from curses.textpad import Textbox
-
 import flet as ft
 
 
