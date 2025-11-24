@@ -1,14 +1,16 @@
 import sys
 
 import flet as ft
+import flet_permission_handler as fph
 
+from utils.on_picker_result import on_picker_result
 from utils.running_platform import running_platform
 
 
 def main(page: ft.Page):
 
     picker = ft.FilePicker()
-    ph = ft.PermissionHandler()
+    ph = fph.PermissionHandler()
 
     page.overlay.append(ph)
     page.overlay.append(picker)
@@ -20,11 +22,6 @@ def main(page: ft.Page):
     if current_platform == ft.PagePlatform.IOS or current_platform == ft.PagePlatform.MACOS:
         print("Cannot run on Apple software", file=sys.stderr)
         sys.exit(1)
-
-    def on_picker_result(e: ft.FilePickerResultEvent):
-        if e.files:
-            image = ft.Image(src_base64=e.files[0].data, width=300, height=300)
-            page.add(image)
 
     def browse_photo(e):
         """
@@ -40,7 +37,7 @@ def main(page: ft.Page):
         else:
             storage_permission_granted = ph.request_permission(ft.PermissionType.MANAGE_EXTERNAL_STORAGE)
 
-    picker.on_result = on_picker_result
+    picker.on_result = lambda e: on_picker_result(e, page)
 
     page.floating_action_button = ft.FloatingActionButton(
         icon=ft.Icons.PHOTO, on_click=browse_photo
