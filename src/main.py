@@ -17,8 +17,9 @@ def main(page: ft.Page):
 
     current_platform = page.platform
 
-    if current_platform == ft.PagePlatform.IOS or current_platform == ft.PagePlatform.MACOS:
-        exit("Cannot run on apple software")
+    if current_platform == ft.PagePlatform.IOS or current_platform == ft.PagePlatform.LINUX:
+        print("Cannot run on Apple software", file=sys.stderr)
+        sys.exit(1)
 
     def on_picker_result(e: ft.FilePickerResultEvent):
         if e.files:
