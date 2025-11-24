@@ -1,79 +1,40 @@
 # Open Insect ID Mobile App
 
 ## Installation
+
+* Quick launch (Linux)
+```bash
+git clone https://github.com/Open-Insect-Id/insect-mobile-app
+cd insect-mobile-app
+python -m venv venv
+pip install -r requirements.txt
+flet run
+```
+
+### Clone the project
+```bash
+git clone https://github.com/Open-Insect-Id/insect-mobile-app
+cd insect-mobile-app
+```
+
+### Switch to venv (virtual environment)
 * Linux
 ```bash
 python -m venv venv
 ```
-
 * Windows
 ```bash
 python.exe -m venv .venv
 ```
 
-
----
-
-## Run the app
-
-### uv
-
-Run as a desktop app:
-
-```
-uv run flet run
+### Install dependencies
+```bash
+pip install -r requirements.txt
 ```
 
-Run as a web app:
-
-```
-uv run flet run --web
-```
-
-### Poetry
-
-Install dependencies from `pyproject.toml`:
-
-```
-poetry install
-```
-
-Run as a desktop app:
-
-```
-poetry run flet run
-```
-
-Run as a web app:
-
-```
-poetry run flet run --web
+### Run the app
+```bash
+flet run
 ```
 
 For more details on running the app, refer to the [Getting Started Guide](https://flet.dev/docs/getting-started/).
-
-## Build the app
-
-### Android
-
-```
-flet build apk -v
-```
-
-For more details on building and signing `.apk` or `.aab`, refer to the [Android Packaging Guide](https://flet.dev/docs/publish/android/).
-
-### Linux
-
-```
-flet build linux -v
-```
-
-For more details on building Linux package, refer to the [Linux Packaging Guide](https://flet.dev/docs/publish/linux/).
-
-### Windows
-
-```
-flet build windows -v
-```
-
-For more details on building Windows package, refer to the [Windows Packaging Guide](https://flet.dev/docs/publish/windows/).
