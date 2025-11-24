@@ -45,6 +45,9 @@ split_per_abi = true
 
 [tool.flet.android.permission] # --android-permissions
 "android.permission.CAMERA" = true
+"android.permission.READ_EXTERNAL_STORAGE" = true
+"android.permission.WRITE_EXTERNAL_STORAGE" = true
+"android.permission.MANAGE_EXTERNAL_STORAGE" = true
 
 [tool.flet.android.feature] # --android-features
 "android.hardware.camera" = false

@@ -11,6 +11,8 @@ def main(page: ft.Page):
 
     picker = ft.FilePicker()
     page.overlay.append(picker)
+    ph = ft.PermissionHandler()
+    page.overlay.append(ph)
 
     def on_picker_result(e: ft.FilePickerResultEvent):
         if e.files:
@@ -23,6 +25,20 @@ def main(page: ft.Page):
             file_type=ft.FilePickerFileType.IMAGE,
             # with_data=True
         )
+
+    def request_permissions(e):
+        granted = ph.request_permission(ft.PermissionType.MANAGE_EXTERNAL_STORAGE)
+        # Optionally handle permission result
+        if granted:
+            page.add(ft.Text("Permission granted"))
+        else:
+            page.add(ft.Text("Permission denied"))
+        page.update()
+
+    page.add(
+        ft.ElevatedButton("Request Storage Permission", on_click=request_permissions)
+    )
+
 
     picker.on_result = on_picker_result
 
