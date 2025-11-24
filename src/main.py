@@ -39,22 +39,28 @@ def main(page: ft.Page):
 
     picker.on_result = lambda e: on_picker_result(e, page)
 
+    page.bgcolor = ft.Colors.BLACK
+
     page.floating_action_button = ft.FloatingActionButton(
-        icon=ft.Icons.PHOTO, on_click=browse_photo
+        icon=ft.Icons.PHOTO, on_click=browse_photo, bgcolor=ft.Colors.BLUE_300
     )
 
     page.add(
         ft.SafeArea(
             ft.Column(
                 [
-                    ft.Text(f"You are running {running_platform(page)}", size=30, weight=ft.FontWeight.BOLD),
-                    # Need this one cause for some reason it makes the text above centered
                     ft.Container(
-                        None,
+                        ft.Text(
+                            value=f"You are running {running_platform(page)}",
+                            size=30,
+                            weight=ft.FontWeight.BOLD,
+                            color=ft.Colors.WHITE
+                        ),
                         alignment=ft.alignment.center,
+                        expand=True
                     ),
                 ],
-                alignment=ft.MainAxisAlignment.CENTER,
+                # alignment=ft.MainAxisAlignment.CENTER,
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                 expand=True,
             ),
