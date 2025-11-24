@@ -51,6 +51,7 @@ def main(page: ft.Page):
             ft.Column(
                 [
                     ft.Text(f"You are running {running_platform(page)}", size=30, weight=ft.FontWeight.BOLD),
+                    # Need this one cause for some reason it makes the text above centered
                     ft.Container(
                         None,
                         alignment=ft.alignment.center,
