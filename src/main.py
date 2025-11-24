@@ -20,7 +20,6 @@ def main(page: ft.Page):
             page.add(image)
 
     def browse_photo(e):
-        page.add(ft.Text("test"))
         picker.pick_files(
             allow_multiple=False,
             file_type=ft.FilePickerFileType.IMAGE,
