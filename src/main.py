@@ -2,17 +2,16 @@ import flet as ft
 
 
 def main(page: ft.Page):
-    counter = ft.Text("0", size=50, data=0)
-
-    def increment_click(e):
-        counter.data += 1
-        counter.value = str(counter.data)
-        counter.update()
 
     picker = ft.FilePicker()
-    page.overlay.append(picker)
     ph = ft.PermissionHandler()
+
     page.overlay.append(ph)
+    page.overlay.append(picker)
+
+    photo_permission_granted = False
+    storage_permission_granted = False
+    supports_camera = True  # Have to replace  with real check
 
     def on_picker_result(e: ft.FilePickerResultEvent):
         if e.files:
@@ -20,46 +19,52 @@ def main(page: ft.Page):
             page.add(image)
 
     def browse_photo(e):
-        picker.pick_files(
-            allow_multiple=False,
-            file_type=ft.FilePickerFileType.IMAGE,
-            # with_data=True
-        )
-
-    def request_permissions(e):
-        granted = ph.request_permission(ft.PermissionType.MANAGE_EXTERNAL_STORAGE)
-        # Optionally handle permission result
-        if granted:
-            page.add(ft.Text("Permission granted"))
+        nonlocal storage_permission_granted
+        if storage_permission_granted:
+            picker.pick_files(
+                allow_multiple=False,
+                file_type=ft.FilePickerFileType.IMAGE,
+                # with_data=True
+            )
         else:
-            page.add(ft.Text("Permission denied"))
-        page.update()
+            storage_permission_granted = ph.request_permission(ft.PermissionType.MANAGE_EXTERNAL_STORAGE)
 
-    page.add(
-        ft.ElevatedButton("Request Storage Permission", on_click=request_permissions)
-    )
-
+    def request_permission_and_take_photo(e):
+        nonlocal photo_permission_granted
+        photo_permission_granted = ph.request_permission(ft.PermissionType.CAMERA)
+        if photo_permission_granted and supports_camera:
+            picker.pick_files(
+                allow_multiple=False,
+                file_type=ft.FilePickerFileType.IMAGE,
+            )
+        else:
+            page.snack_bar = ft.SnackBar(ft.Text("Camera permission not granted or not supported"))
+            page.snack_bar.open = True
+            page.update()
 
     picker.on_result = on_picker_result
 
-    take_photo_button = ft.ElevatedButton(
-        "Browse photo",
+    browse_photo_button = ft.ElevatedButton(
+        "Browse photo" if photo_permission_granted else " Grand storage permission",
         on_click=browse_photo
     )
 
-    page.floating_action_button = ft.FloatingActionButton(
-        icon=ft.Icons.ADD, on_click=increment_click
+    take_photo_button = ft.ElevatedButton(
+        "Take photo" if photo_permission_granted else " Grant Camera permission",
+        on_click=request_permission_and_take_photo
     )
+
     page.add(
         ft.SafeArea(
             ft.Column(
                 [
                     ft.Text("Welcome", size=30, weight=ft.FontWeight.BOLD),
-                    take_photo_button,
                     ft.Container(
-                        counter,
-                        alignment=ft.alignment.center,
+                        content = None,
+                        height=50
                     ),
+                    take_photo_button,
+                    browse_photo_button
                 ],
                 alignment=ft.MainAxisAlignment.CENTER,
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
