@@ -51,6 +51,10 @@ def main(page: ft.Page):
             ft.Column(
                 [
                     ft.Text(f"You are running {running_platform(page)}", size=30, weight=ft.FontWeight.BOLD),
+                    ft.Container(
+                        None,
+                        alignment=ft.alignment.center,
+                    ),
                 ],
                 alignment=ft.MainAxisAlignment.CENTER,
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
