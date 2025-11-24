@@ -1,0 +1,1 @@
+adb install build/apk/app-arm64-v8a-release.apk
