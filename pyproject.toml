@@ -42,3 +42,9 @@ flet = {extras = ["all"], version = "0.28.3"}
 
 [tool.flet.android]
 split_per_abi = true
+
+[tool.flet.android.permission] # --android-permissions
+"android.permission.CAMERA" = true
+
+[tool.flet.android.feature] # --android-features
+"android.hardware.camera" = false
