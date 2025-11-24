@@ -3,8 +3,8 @@ import sys
 import flet as ft
 import flet_permission_handler as fph
 
-from utils.on_picker_result import on_picker_result
-from utils.running_platform import running_platform
+from src.utils.on_picker_result import on_picker_result
+from src.utils.running_platform import running_platform
 
 
 def main(page: ft.Page):
