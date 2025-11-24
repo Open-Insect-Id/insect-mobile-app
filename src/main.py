@@ -1,5 +1,7 @@
 import flet as ft
 
+from utils.running_platform import running_platform
+
 
 def main(page: ft.Page):
 
@@ -66,7 +68,7 @@ def main(page: ft.Page):
         ft.SafeArea(
             ft.Column(
                 [
-                    ft.Text("Welcome", size=30, weight=ft.FontWeight.BOLD),
+                    ft.Text(f"You are running {running_platform(page)}", size=30, weight=ft.FontWeight.BOLD),
                     ft.Container(
                         content = None,
                         height=50

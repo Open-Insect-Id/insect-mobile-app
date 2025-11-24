@@ -1,6 +1,6 @@
 [project]
 name = "OpenInsectID"
-version = "0.1.0"
+version = "0.1.1"
 description = "Recognize an insect in seconds with Open Insect ID"
 readme = "README.md"
 requires-python = ">=3.9"
