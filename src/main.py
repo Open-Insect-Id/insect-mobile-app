@@ -19,17 +19,25 @@ def main(page: ft.Page):
             page.add(image)
 
     def browse_photo(e):
+        """
+        :param e: nothing, IDK what's that
+        :return: nothing; just updates the permission granted state if not granted
+        """
         nonlocal storage_permission_granted
         if storage_permission_granted:
             picker.pick_files(
                 allow_multiple=False,
                 file_type=ft.FilePickerFileType.IMAGE,
-                # with_data=True
             )
         else:
             storage_permission_granted = ph.request_permission(ft.PermissionType.MANAGE_EXTERNAL_STORAGE)
 
     def request_permission_and_take_photo(e):
+        """
+        Request android permission to access camera / take a photo
+        (RN it only picks a photo using the file picker, but it should take a photo in real time)
+        :param e: nothing
+        """
         nonlocal photo_permission_granted
         photo_permission_granted = ph.request_permission(ft.PermissionType.CAMERA)
         if photo_permission_granted and supports_camera:
