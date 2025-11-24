@@ -1,11 +1,13 @@
 [project]
-name = "openinsectid-mobileapp"
+name = "Open Insect ID"
 version = "0.1.0"
-description = ""
+description = "Recognize an insect in seconds with Open Insect ID"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [
-    { name = "Flet developer", email = "you@example.com" }
+    { name = "Elnix90", email = "elnix91@gmail.com" },
+    { name = "YoannDev90", email = "yoanndev@outlook.fr" },
+    { name = "LuckyTheCookie", email = "" }
 ]
 dependencies = [
   "flet==0.28.3"
@@ -14,17 +16,17 @@ dependencies = [
 [tool.flet]
 # org name in reverse domain name notation, e.g. "com.mycompany".
 # Combined with project.name to build bundle ID for iOS and Android apps
-org = "com.mycompany"
+org = "org"
 
 # project display name that is used as an app title on Android and iOS home screens,
 # shown in window titles and about app dialogs on desktop.
-product = "openinsectid-mobileapp"
+product = "Open Insect Id"
 
 # company name to display in about app dialogs
 company = "Flet"
 
 # copyright text to display in about app dialogs
-copyright = "Copyright (C) 2025 by Flet"
+copyright = "Copyright (c) 2025 Open Insect-ID"
 
 [tool.flet.app]
 path = "src"
