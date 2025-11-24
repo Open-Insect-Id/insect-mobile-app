@@ -15,6 +15,11 @@ def main(page: ft.Page):
     storage_permission_granted = False
     supports_camera = True  # Have to replace  with real check
 
+    current_platform = page.platform
+
+    if current_platform == ft.PagePlatform.IOS or ft.PagePlatform.MACOS:
+        exit("Cannot run on apple software")
+
     def on_picker_result(e: ft.FilePickerResultEvent):
         if e.files:
             image = ft.Image(src_base64=e.files[0].data, width=300, height=300)
@@ -26,7 +31,7 @@ def main(page: ft.Page):
         :return: nothing; just updates the permission granted state if not granted
         """
         nonlocal storage_permission_granted
-        if storage_permission_granted:
+        if storage_permission_granted or current_platform != ft.PagePlatform.ANDROID:
             picker.pick_files(
                 allow_multiple=False,
                 file_type=ft.FilePickerFileType.IMAGE,
@@ -42,7 +47,7 @@ def main(page: ft.Page):
         """
         nonlocal photo_permission_granted
         photo_permission_granted = ph.request_permission(ft.PermissionType.CAMERA)
-        if photo_permission_granted and supports_camera:
+        if (photo_permission_granted and supports_camera) or current_platform != ft.PagePlatform.ANDROID:
             picker.pick_files(
                 allow_multiple=False,
                 file_type=ft.FilePickerFileType.IMAGE,
