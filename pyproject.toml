@@ -1,5 +1,5 @@
 [project]
-name = "Open Insect ID"
+name = "OpenInsectID"
 version = "0.1.0"
 description = "Recognize an insect in seconds with Open Insect ID"
 readme = "README.md"
